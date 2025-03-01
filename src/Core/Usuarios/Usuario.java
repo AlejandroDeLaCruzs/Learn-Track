@@ -1,26 +1,22 @@
 package Core.Usuarios;
 
 abstract public class Usuario {
-    public String getIdusuario() {
-        return idusuario;
-    }
-
-    public void setIdusuario(String idusuario) {
-        this.idusuario = idusuario;
-    }
 
     String idusuario;
+    String nombre;
+    String contrasenia;
 
-    public String getCorreo() {
-        return correo;
+    abstract public String rol();
+
+    public Usuario(String idusuario, String nombre,String contrasenia){
+        this.idusuario = idusuario;
+        this.nombre = nombre;
+        this.contrasenia = contrasenia;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public String mostrardatos(){
+        return new String("idUsuario:"+ idusuario + "Nombre:" + nombre + "Contraseña:" + contrasenia);
     }
-
-    String correo;
-
     public String getContrasenia() {
         return contrasenia;
     }
@@ -29,16 +25,20 @@ abstract public class Usuario {
         this.contrasenia = contrasenia;
     }
 
-    String contrasenia;
-
-    abstract public String rol();
-
-
-    public Usuario(String idusuario, String nombre,String contrasenia){
-        this.idusuario = idusuario;
-        this.correo = nombre;
-        this.contrasenia = contrasenia;
+    public String getNombre() {
+        return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(String idusuario) {
+        this.idusuario = idusuario;
+    }
 
 }

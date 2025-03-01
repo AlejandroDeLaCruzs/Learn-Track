@@ -2,6 +2,7 @@ package GUI;
 
 
 import Core.LearnTrack;
+import Core.Usuarios.Administrador;
 
 
 import javax.swing.*;
@@ -135,8 +136,10 @@ public class PanelInicio extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (esValido(emailField.getText(), passwordField.getPassword(), ventanaContenedora,learnTrack.getUsuarios())) {
+                    if(ventanaContenedora.getUsuarioactivo() instanceof Administrador){
+                        ventanaContenedora.cambiarPanel("panelinicioadmin");
 
-                    ventanaContenedora.cambiarPanel("pantallacarga");
+                    }
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Usuario incorrecto");

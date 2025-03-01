@@ -8,4 +8,9 @@ public class Profesor extends Usuario{
     public String rol(){
         return "Profesor";
     }
+
+    @Override
+    public String mostrardatos() {
+        return super.mostrardatos() + "Rol: profesor";
+    }
 }

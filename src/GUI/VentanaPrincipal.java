@@ -2,6 +2,7 @@ package GUI;
 
 import Core.LearnTrack;
 import Core.Usuarios.Usuario;
+import GUI.Admin.PanelInicioAdmin;
 
 
 import javax.swing.*;
@@ -40,7 +41,7 @@ public class VentanaPrincipal extends JFrame {
         // Configuración del JFrame
         setTitle("Learn Track");
         setSize(400, 400);
-        setLayout(new BorderLayout());
+        //setLayout(new BorderLayout());
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -104,5 +105,6 @@ public class VentanaPrincipal extends JFrame {
      */
     private void inicializarPaneles() {
         panelContenedor.add(new PanelInicio(this, learnTrack), "panelInicio");
+        panelContenedor.add(new PanelInicioAdmin(this, learnTrack), "panelinicioadmin");
     }
 }
