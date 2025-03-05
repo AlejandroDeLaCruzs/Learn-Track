@@ -136,8 +136,9 @@ public class PanelInicio extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (esValido(emailField.getText(), passwordField.getPassword(), ventanaContenedora,learnTrack.getUsuarios())) {
+                    ventanaContenedora.cambiarPanel("panelinicioadmin");
                     if(ventanaContenedora.getUsuarioactivo() instanceof Administrador){
-                        ventanaContenedora.cambiarPanel("panelinicioadmin");
+                     ventanaContenedora.cambiarPanel("panelinicioadmin");
 
                     }
 

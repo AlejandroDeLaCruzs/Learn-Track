@@ -33,7 +33,7 @@ public class LearnTrack {
      * Carga los datos de libros, usuarios y préstamos desde los archivos correspondientes.
      */
     public void iniciarLearnTrack() {
-        FicheroUsuarios ficheroUsuarios = new FicheroUsuarios();
+        FicheroUsuarios ficheroUsuarios = new FicheroUsuarios("usuarios.csv");
         usuarios=ficheroUsuarios.crearUsuarios();
 
     }

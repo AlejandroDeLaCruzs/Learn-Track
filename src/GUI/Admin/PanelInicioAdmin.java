@@ -40,7 +40,7 @@ public class PanelInicioAdmin extends JPanel {
         boton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ventana.mostrarPanel(new PanelMenuAdmin(ventana, learnTrack), "panelMenuAdmin");
+                ventana.mostrarPanel(new UserManagementPanel(ventana, learnTrack), "panelMenuAdmin");
             }
         });
         return boton;

@@ -1,6 +1,5 @@
 package Core.Ficheros;
 
-
 import Core.Usuarios.Administrador;
 import Core.Usuarios.Alumno;
 import Core.Usuarios.Profesor;
@@ -9,69 +8,79 @@ import Core.Usuarios.Usuario;
 import java.io.*;
 import java.util.ArrayList;
 
-
 public class FicheroUsuarios {
+    private final String filePath;
+
+    // Constructor to allow flexible file path
+    public FicheroUsuarios(String filePath) {
+        this.filePath = filePath;
+    }
+
     public ArrayList<Usuario> crearUsuarios() {
         ArrayList<Usuario> objetos = new ArrayList<>();
 
-        // Leer el archivo
-        try (BufferedReader br = new BufferedReader(new FileReader("usuarios.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                // Separar los datos por espacios
                 String[] datos = linea.trim().split(",");
-                if (datos.length != 4) continue; // Saltar líneas inválidas
-
-                String idUsurio = datos[0];
-                String nombre = datos[1];
-                String contrasenia = datos[2];
-                String rol = datos[3];
-
-                switch (rol.toLowerCase()) {
-                    case "admin":
-                        objetos.add(new Administrador(idUsurio,nombre, contrasenia));
-                        System.out.println("aa");
-                        break;
-                    case "alumno":
-                        objetos.add(new Alumno(idUsurio,nombre, contrasenia));
-                        break;
-                    case "profesor":
-                        objetos.add(new Profesor(idUsurio,nombre,contrasenia));
-                        break;
-                    default:
-                        break;
+                if (datos.length != 5) {
+                    System.err.println("Línea inválida: " + linea);
+                    continue; // Saltar líneas inválidas
                 }
 
+                String idUsuario = datos[0].trim();
+                String nombre = datos[1].trim();
+                String contrasenia = datos[3].trim();
+                String rol = datos[4].trim().toLowerCase();
+                String correo = datos[2].trim();
+
+                // Validación básica
+                if (idUsuario.isEmpty() || nombre.isEmpty() || contrasenia.isEmpty() || rol.isEmpty() || correo.isEmpty()) {
+                    System.err.println("Campos vacíos en línea: " + linea);
+                    continue;
+                }
+
+                switch (rol) {
+                    case "admin":
+                        objetos.add(new Administrador(idUsuario, nombre, contrasenia, correo));
+                        break;
+                    case "alumno":
+                        objetos.add(new Alumno(idUsuario, nombre, contrasenia, correo));
+                        break;
+                    case "profesor":
+                        objetos.add(new Profesor(idUsuario, nombre, contrasenia, correo));
+                        break;
+                    default:
+                        System.err.println("Rol desconocido: " + rol + " en línea: " + linea);
+                        break;
+                }
             }
         } catch (IOException e) {
-            System.out.println("Error al leer el archivo: " + e.getMessage());
+            throw new RuntimeException("Error al leer el archivo " + filePath + ": " + e.getMessage(), e);
         }
         return objetos;
     }
 
-
     /**
-     * Escribe una lista de objetos en un archivo de texto.
-     * Cada objeto se convierte en su representación en texto utilizando el método toString().
+     * Escribe la lista de usuarios en un archivo CSV.
      *
-     * @param nombreArchivo El nombre del archivo donde se escribirán los objetos.
-     * @param objetos Lista de objetos que se guardarán en el archivo.
+     * @param usuarios Lista de usuarios a guardar
      */
-   /* public void escribirFichero(String nombreArchivo, ArrayList<T> objetos) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo))) {
-            for (T objeto : objetos) {
-                writer.write(objeto.toString());
-                writer.newLine(); // Agrega una nueva línea después de cada objeto
+    public void escribirUsuarios(ArrayList<Usuario> usuarios) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (Usuario usuario : usuarios) {
+                String rol = "";
+                if (usuario instanceof Administrador) rol = "admin";
+                else if (usuario instanceof Alumno) rol = "alumno";
+                else if (usuario instanceof Profesor) rol = "profesor";
+
+                String linea = String.format("%s,%s,%s,%s,%s",
+                        usuario.getIdusuario(), usuario.getNombre(), usuario.getContrasenia(), rol, usuario.getCorreo());
+                writer.write(linea);
+                writer.newLine();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al escribir en el archivo " + filePath + ": " + e.getMessage(), e);
         }
     }
-
-    public String[] parchearCampos(String linea){
-        String[] partes = linea.split(",");
-
-        return partes;
-    }*/
-
 }
