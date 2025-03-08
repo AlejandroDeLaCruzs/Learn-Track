@@ -30,6 +30,7 @@ public class UserManagementPanel extends JPanel {
         exitButton.addActionListener(e -> {
             ventanaPrincipal.cambiarPanel("panelinicioadmin");
         });
+
         JPanel exitPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         exitPanel.add(exitButton);
         topPanel.add(exitPanel, BorderLayout.EAST);

@@ -7,6 +7,7 @@ import java.util.Random;
 
 
 public class ValidacionCrearUsuario {
+
     public static boolean emailExists(String email, ArrayList<Usuario> usuarios) {
         for (Usuario usuario : usuarios) {
             if (usuario.getCorreo().equalsIgnoreCase(email)) {
