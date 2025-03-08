@@ -1,4 +1,4 @@
-package Core.Validacion;
+package Core.Validacion.Usuarios;
 
 import Core.Usuarios.Administrador;
 import Core.Usuarios.Alumno;

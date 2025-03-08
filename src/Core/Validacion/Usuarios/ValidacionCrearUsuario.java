@@ -1,11 +1,9 @@
-package Core.Validacion;
+package Core.Validacion.Usuarios;
 
 import Core.Usuarios.Usuario;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
-
 
 
 public class ValidacionCrearUsuario {

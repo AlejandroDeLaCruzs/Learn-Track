@@ -9,11 +9,9 @@ import GUI.VentanaPrincipal;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Random;
 
-import static Core.Validacion.ValidacionCrearUsuario.*;
+import static Core.Validacion.Usuarios.ValidacionCrearUsuario.*;
 
 public class UserManagementPanel extends JPanel {
     private ArrayList<Usuario> usuarios;

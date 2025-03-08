@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-import static Core.Validacion.ValidadorInicioSesion.esValido;
+import static Core.Validacion.Usuarios.ValidadorInicioSesion.esValido;
 
 
 /**

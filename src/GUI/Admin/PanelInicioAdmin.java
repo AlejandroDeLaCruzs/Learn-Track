@@ -19,6 +19,9 @@ public class PanelInicioAdmin extends JPanel {
         add(botonRegistro(ventanaPrincipal, learnTrack));
         add(Box.createRigidArea(new Dimension(0, 40)));
 
+        add(botonCursos(ventanaPrincipal, learnTrack));
+
+
 
 
 
@@ -64,7 +67,7 @@ public class PanelInicioAdmin extends JPanel {
         boton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+ventana.mostrarPanel(new CourseCreationPanel(ventana, learnTrack), "cursos");
             }
         });
         return boton;

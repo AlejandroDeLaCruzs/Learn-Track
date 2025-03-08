@@ -1,6 +1,7 @@
 package Core;
 
 import Core.Cursos.Curso;
+import Core.Ficheros.FicheroCursos;
 import Core.Ficheros.FicheroUsuarios;
 import Core.Usuarios.Administrador;
 import Core.Usuarios.Alumno;
@@ -11,14 +12,6 @@ import Core.Usuarios.Usuario;
 import java.util.ArrayList;
 
 public class LearnTrack {
-    public ArrayList<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(ArrayList<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
     private ArrayList<Usuario> usuarios;
     private ArrayList<Curso> cursos;
 
@@ -36,11 +29,26 @@ public class LearnTrack {
         FicheroUsuarios ficheroUsuarios = new FicheroUsuarios("usuarios.csv");
         usuarios=ficheroUsuarios.crearUsuarios();
 
+        FicheroCursos ficheroCursos = new FicheroCursos("cursos.csv", usuarios);
+        cursos=ficheroCursos.crearCursos();
+
+
     }
 
-    /*public void cerrarLearnTrack() {
-        FicheroGenerico<Alumno> ficheroUsuario = new FicheroGenerico<>(null);
-        ficheroUsuario.escribirFichero("alumnos.txt", alumnos);
 
-    }*/
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(ArrayList<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public ArrayList<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(ArrayList<Curso> cursos) {
+        this.cursos = cursos;
+    }
 }
